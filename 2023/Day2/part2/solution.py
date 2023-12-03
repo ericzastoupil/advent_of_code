@@ -25,7 +25,6 @@ if __name__ == '__main__':
 
     game_powers = []
     for line in lines:
-        split_line = line.split(':')
-        game_powers.append(game_power(split_line[1]))
+        game_powers.append(game_power(line.split(':')[1]))
     
     print(sum(game_powers))
