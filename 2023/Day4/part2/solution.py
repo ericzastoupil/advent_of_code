@@ -3,9 +3,6 @@ def split_line(line):
     winning = [i for i in split[0].strip().split(" ") if i != '']
     mine = [i for i in split[1].strip().split(" ") if i != '']
 
-    #winning = [i for i in winning if i != '']
-    #mine = [i for i in mine if i != '']
-
     return winning, mine
 
 if __name__ == '__main__':
