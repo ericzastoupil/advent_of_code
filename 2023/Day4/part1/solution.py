@@ -1,10 +1,7 @@
 def split_line(line):
     split = line[line.find(':') + 1:].split('|')
-    winning = split[0].strip().split(" ")
-    mine = split[1].strip().split(" ")
-
-    winning = [i for i in winning if i != '']
-    mine = [i for i in mine if i != '']
+    winning = [i for i in split[0].strip().split(" ") if i != '']
+    mine = [i for i in split[1].strip().split(" ") if i != '']
 
     return winning, mine
 
