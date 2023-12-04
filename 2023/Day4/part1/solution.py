@@ -5,6 +5,18 @@ def split_line(line):
 
     return winning, mine
 
+def game_score(wining, mine):
+    game = 0
+
+    for winner in winning:
+        if winner in mine:
+            if game == 0:
+                game += 1
+            else:
+                game *= 2
+    
+    return game
+
 if __name__ == '__main__':
     file = open('../input.txt', 'r')
     lines = file.readlines()
@@ -13,14 +25,7 @@ if __name__ == '__main__':
     
     for line in lines:
         winning, mine = split_line(line)
-        game = 0
 
-        for winner in winning:
-            if winner in mine:
-                if game == 0:
-                    game += 1
-                else:
-                    game *= 2
-        final += game
+        final += game_score(winning, mine)
     
     print(final)
