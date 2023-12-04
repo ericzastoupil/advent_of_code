@@ -3,13 +3,8 @@ def split_line(line):
     winning = split[0].strip().split(" ")
     mine = split[1].strip().split(" ")
 
-    for element in winning:
-        if element == '':
-            winning.remove('')
-
-    for element in mine:
-        if element == '':
-            mine.remove('')
+    winning = [i for i in winning if i != '']
+    mine = [i for i in mine if i != '']
 
     return winning, mine
 
