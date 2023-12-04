@@ -69,13 +69,10 @@ if __name__ == '__main__':
             elif number:
                 if adjacent_to_star:
                     gear_dict[number] = star_location
+                    zeroes[star_location[0]][star_location[1]][0] *= int(number)
+                    zeroes[star_location[0]][star_location[1]][1] += 1
                 number = ''
                 adjacent_to_star = False
-
-    print(gear_dict)
-    for key, value in gear_dict.items():
-        zeroes[value[0]][value[1]][0] *= int(key)
-        zeroes[value[0]][value[1]][1] += 1
 
     final = 0
     for row in zeroes:
