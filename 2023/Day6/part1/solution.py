@@ -7,8 +7,7 @@ def get_lists(lines):
         if "Time" in split_type[0]:
             times = split_type[1].strip()
             times = times.split()
-
-                
+    
         if "Distance" in split_type[0]:
             distances = split_type[1].strip()
             distances = distances.split()
