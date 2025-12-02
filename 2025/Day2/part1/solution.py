@@ -13,6 +13,7 @@ def get_input(file_name):
 def invalid_num(num):
     str_num = str(num)
 
+    #if the first half of the number is the same as the back half
     if str_num[:len(str_num) // 2] == str_num[len(str_num) // 2:]:
         return num
     
@@ -20,6 +21,8 @@ def invalid_num(num):
 
 def sum_invalids_in_range(ID_range):
     sum_invalids_in_range = 0
+
+    #run an independent check for each number in the range
     for num in range(ID_range[0], ID_range[1] + 1):
         sum_invalids_in_range += invalid_num(num)
     return sum_invalids_in_range
@@ -28,6 +31,7 @@ def play_game(file_list):
 
     sum_all_invalids = 0
 
+    #check each range
     for range in file_list:
         sum_all_invalids += sum_invalids_in_range(range)
 

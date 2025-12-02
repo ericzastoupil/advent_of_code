@@ -13,8 +13,10 @@ def get_input(file_name):
 def check_substr(str_num, length):
     
     for i in range(0, length + 1):
+        #if it doesn't cleanly chop into equivalent length substrings, ignore
         if len(str_num) % length != 0:
             continue
+        #if the number of matching substrings present takes up the full length of string, count it
         if str_num.count(str_num[:length]) == len(str_num)/length:
             return True
 
@@ -23,6 +25,7 @@ def check_substr(str_num, length):
 def invalid_num(num):
     str_num = str(num)
 
+    #run an independent check for each length of substring, up to 1/2 of the original length
     for length in range(1, len(str_num) // 2 + 1):
         if check_substr(str_num, length):
             return num
@@ -31,6 +34,8 @@ def invalid_num(num):
 
 def sum_invalids_in_range(ID_range):
     sum_invalids_in_range = 0
+    
+    #run an independent check for each number in the range
     for num in range(ID_range[0], ID_range[1] + 1):
         sum_invalids_in_range += invalid_num(num)
     return sum_invalids_in_range
@@ -39,6 +44,7 @@ def play_game(file_list):
 
     sum_all_invalids = 0
 
+    #check each range
     for range in file_list:
         sum_all_invalids += sum_invalids_in_range(range)
 
