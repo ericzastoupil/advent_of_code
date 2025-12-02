@@ -10,24 +10,13 @@ def get_input(file_name):
     print(file_list)
     return file_list
 
-def check_substr(str_num, length):
-    
-    for i in range(0, length + 1):
-        #if it doesn't cleanly chop into equivalent length substrings, ignore
-        if len(str_num) % length != 0:
-            continue
-        #if the number of matching substrings present takes up the full length of string, count it
-        if str_num.count(str_num[:length]) == len(str_num)/length:
-            return True
-
-    return False
-
 def invalid_num(num):
     str_num = str(num)
 
     #run an independent check for each length of substring, up to 1/2 of the original length
     for length in range(1, len(str_num) // 2 + 1):
-        if check_substr(str_num, length):
+        #if the number of substring appearrances equals len(str)/length of sub_str
+        if str_num.count(str_num[:length]) == len(str_num)/length:
             return num
     
     return 0
