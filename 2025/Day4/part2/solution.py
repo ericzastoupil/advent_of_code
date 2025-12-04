@@ -49,23 +49,40 @@ def roll_can_be_removed(row, col, file_list):
     
     #if its not a roll, we don't care
     if file_list[row][col] != '@':
-        return 0
-
+        return False
+    
     #if there are less than 4 adjacent rolls, we can remove it
     if count_adjacent_rolls(row, col, file_list) < 4:
-        return 1
-    return 0
+        return True
+    return False
 
-def play_game(file_list):
-
-    valid_rolls = 0
+def evaluate_board(file_list):
+    rolls_to_remove_this_pass = 0
+    change_made = False
 
     #look at each item on the board
     for row in range(0, len(file_list)):
         for col in range(0, len(file_list[row])):
-            valid_rolls += roll_can_be_removed(row, col, file_list)
-    
-    return valid_rolls    
+            if roll_can_be_removed(row, col, file_list):
+                file_list[row] = file_list[row][:col] + 'x' + file_list[row][col + 1:]
+                change_made = True
+                rolls_to_remove_this_pass += 1
+
+    return [rolls_to_remove_this_pass, file_list, change_made]
+
+def play_game(file_list):
+
+    total_rolls_removed = 0
+    check_board = True
+
+    #run until no changes are made on any given pass
+    while check_board:
+        output = evaluate_board(file_list)
+        total_rolls_removed += output[0]
+        file_list = output[1]
+        check_board = output[2]
+
+    return total_rolls_removed
 
 if __name__ == "__main__":
     print("Solution: ", play_game(get_input("input.txt")))
